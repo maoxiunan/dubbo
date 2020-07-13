@@ -223,6 +223,7 @@ public class ServiceConfig<T> extends ServiceConfigBase<T> {
         // Use default configs defined explicitly with global scope
         completeCompoundConfigs();
         checkDefault();
+        // 协议的校验
         checkProtocol();
         // init some null configuration.
         List<ConfigInitializer> configInitializers = ExtensionLoader.getExtensionLoader(ConfigInitializer.class)
@@ -307,6 +308,8 @@ public class ServiceConfig<T> extends ServiceConfigBase<T> {
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     private void doExportUrls() {
+        // 获取APPLICATION 的仓库里面存放的是DUBBO中的所有的仓库的地址
+        // 有所有的服务 消费的  生产的 还有提供的没有分组的服务
         ServiceRepository repository = ApplicationModel.getServiceRepository();
         ServiceDescriptor serviceDescriptor = repository.registerService(getInterfaceClass());
         repository.registerProvider(

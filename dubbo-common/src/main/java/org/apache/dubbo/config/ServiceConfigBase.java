@@ -235,6 +235,7 @@ public abstract class ServiceConfigBase<T> extends AbstractServiceConfig {
                     protocolConfigs = new ArrayList<>(1);
                     ProtocolConfig protocolConfig = new ProtocolConfig();
                     protocolConfig.setDefault(true);
+                    // 这里刷新就就会使用默认的dubbo协议
                     protocolConfig.refresh();
                     protocolConfigs.add(protocolConfig);
                     ApplicationModel.getConfigManager().addProtocol(protocolConfig);

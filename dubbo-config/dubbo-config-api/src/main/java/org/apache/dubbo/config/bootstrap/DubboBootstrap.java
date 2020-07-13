@@ -510,7 +510,7 @@ public class DubboBootstrap extends GenericEventListener {
         if (!initialized.compareAndSet(false, true)) {
             return;
         }
-
+        // 加载
         ApplicationModel.initFrameworkExts();
 
         startConfigCenter();
@@ -753,7 +753,7 @@ public class DubboBootstrap extends GenericEventListener {
             if (logger.isInfoEnabled()) {
                 logger.info(NAME + " is starting...");
             }
-            // 1. export Dubbo Services
+            // 1. 暴露dubbo的接口
             exportServices();
 
             // Not only provider register
@@ -937,6 +937,7 @@ public class DubboBootstrap extends GenericEventListener {
     private void exportServices() {
         configManager.getServices().forEach(sc -> {
             // TODO, compatible with ServiceConfig.export()
+            // 每一个配置都使用相同的父类的基础配置
             ServiceConfig serviceConfig = (ServiceConfig) sc;
             serviceConfig.setBootstrap(this);
 
