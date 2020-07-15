@@ -18,10 +18,12 @@ package com.alibaba.dubbo.remoting.transport.netty4;
 
 import com.alibaba.dubbo.common.Constants;
 import com.alibaba.dubbo.common.URL;
+import com.alibaba.dubbo.common.extension.ExtensionLoader;
 import com.alibaba.dubbo.common.utils.NetUtils;
 import com.alibaba.dubbo.remoting.Channel;
 import com.alibaba.dubbo.remoting.RemotingException;
 import com.alibaba.dubbo.remoting.Server;
+import com.alibaba.dubbo.remoting.Transporter;
 import com.alibaba.dubbo.remoting.transport.ChannelHandlerAdapter;
 import org.junit.Test;
 
@@ -66,5 +68,12 @@ public class NettyTransporterTest {
         });
 
         lock.await();
+    }
+
+    @Test
+    public void test_urlHolder_getAdaptiveExtension_Transporter () throws Exception {
+        Transporter ext = ExtensionLoader.getExtensionLoader(Transporter.class).getAdaptiveExtension();
+
+
     }
 }
